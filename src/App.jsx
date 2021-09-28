@@ -1,8 +1,12 @@
 import React from 'react';
+import AppRouter from './components/AppRouter/AppRouter';
+import Layout from './components/layout/Layout/Layout';
 
 const App = () => {
   return ( 
-    <div>APP</div>
+    <Layout>
+      <AppRouter/>
+    </Layout>
    );
 }
  
