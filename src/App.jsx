@@ -1,16 +1,20 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import AppRouter from './components/AppRouter/AppRouter';
-import Layout from './components/layout/Layout/Layout';
+import { CssBaseline } from "@material-ui/core";
+import { useTheme, ThemeProvider } from "@material-ui/core/styles";
+import React from "react";
+import AppRouter from "./components/AppRouter";
+import Layout from "./components/Layout";
 
 const App = () => {
-  const store = useSelector(store => store)
-  console.log(store);
-  return ( 
-    <Layout>
-      <AppRouter/>
-    </Layout>
-   );
-}
- 
+    const theme = useTheme();
+    console.log(theme);
+    return (
+        <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Layout>
+                <AppRouter />
+            </Layout>
+        </ThemeProvider>
+    );
+};
+
 export default App;

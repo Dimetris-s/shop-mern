@@ -1,4 +1,4 @@
-import { REMOVE_USER, SET_CATEGORIES, SET_LOADING, SET_PRODUCTS, SET_USER } from "./types";
+import { REMOVE_USER, SET_CATEGORIES, SET_LOADING, SET_PRODUCTS, SET_USER, STOP_LOADING } from "./types";
 
 export const setUser = user => ({type: SET_USER, payload: user})
 export const removeUser = () => ({type: REMOVE_USER})

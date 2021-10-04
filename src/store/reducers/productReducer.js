@@ -10,7 +10,7 @@ const initialState = {
     ],
     categories: [
         {id: 1, name: 'Перифирия'},
-        {id: 2, name: 'Бытовая'},
+        {id: 2, name: 'Бытовая техника'},
         {id: 3, name: 'Смартфоны'}
     ]
 }

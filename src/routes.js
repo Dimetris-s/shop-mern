@@ -1,8 +1,8 @@
-import Auth from "./pages/Auth/Auth"
-import Basket from "./pages/Basket/Basket"
-import Dashboard from "./pages/Dashboard/Dashboard"
-import Home from "./pages/Home/Home"
-import ProductPage from "./pages/ProductPage/ProductPage"
+import Auth from "./pages/Auth"
+import Basket from "./pages/Basket"
+import Dashboard from "./pages/Dashboard"
+import Home from "./pages/Home"
+import ProductPage from "./pages/ProductPage"
 import { BASKET_ROUTE, DASHBOARD_ROUTE, HOME_ROUTE, LOGIN_ROUTE, PRODUCT_ROUTE, REGISTRATION_ROUTE } from "./utils/consts"
 
 export const authRoutes = [
