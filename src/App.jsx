@@ -1,12 +1,14 @@
-import { CssBaseline } from "@material-ui/core";
-import { useTheme, ThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/styles";
+import { createTheme } from "@material-ui/core/styles";
 import React from "react";
 import AppRouter from "./components/AppRouter";
 import Layout from "./components/Layout";
+import { CssBaseline } from "@material-ui/core";
+
+const theme = createTheme()
+
 
 const App = () => {
-    const theme = useTheme();
-    console.log(theme);
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />

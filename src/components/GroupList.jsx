@@ -1,4 +1,17 @@
+import {
+    Button,
+    ButtonGroup
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/styles";
 import React from "react";
+
+const useStyles = makeStyles((theme) => ({
+    "button-group": {
+        width: '100%',
+        padding: 0,
+        margin: 0
+    }
+}));
 
 const GroupList = ({
     items,
@@ -7,19 +20,21 @@ const GroupList = ({
     selectedItem,
     onItemChange,
 }) => {
+    const classes = useStyles();
+    
     return (
-        <ul>
+        <ButtonGroup component="ul" className={classes['button-group']} orientation="vertical">
             {Object.keys(items).map((key) => (
-                <li
+                <Button
+                    component="li"
+                    className={classes.button}
+                    variant={`${selectedItem === items[key] ? "contained" : "outlined"}`}
                     key={items[key][valueProp]}
-                    className={`list-item ${
-                        selectedItem === items[key] ? "active" : ""
-                    }`}
                     onClick={() => onItemChange(items[key])}>
                     {items[key][contentProp]}
-                </li>
+                </Button>
             ))}
-        </ul>
+        </ButtonGroup>
     );
 };
 
