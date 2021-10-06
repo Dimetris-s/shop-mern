@@ -1,10 +1,12 @@
 import {
+    CLEAR_SEARCH,
     REMOVE_USER,
     RESET_CATEGORY,
     SELECT_CATEGORY,
     SET_CATEGORIES,
     SET_LOADING,
     SET_PRODUCTS,
+    SET_SAERCH_VALUE,
     SET_SORT_ORDER,
     SET_SORT_TYPE,
     SET_USER,
@@ -48,4 +50,12 @@ export const setSortType = type => ({
 export const setSortOrder = order => ({
     type: SET_SORT_ORDER,
     payload: order
+})
+
+export const setSearchValue = value => ({
+    type: SET_SAERCH_VALUE,
+    payload: value
+})
+export const clearSearch = () => ({
+    type: CLEAR_SEARCH
 })
