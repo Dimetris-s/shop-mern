@@ -1,3 +1,4 @@
+import { StyledEngineProvider } from '@material-ui/styled-engine';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -8,7 +9,9 @@ import store from './store';
 const application = (
   <Provider store={store}>
     <BrowserRouter>
-      <App/>
+      <StyledEngineProvider injectFirst>
+        <App/>
+      </StyledEngineProvider>
     </BrowserRouter>
   </Provider>
 )

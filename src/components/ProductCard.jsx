@@ -5,6 +5,7 @@ import {
     CardContent,
     CardMedia,
     Grid,
+    Rating,
     Typography,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles"
@@ -22,7 +23,7 @@ const useStyle = makeStyles(theme => ({
 }))
 
 const ProductCard = ({ product }) => {
-    const { id, img, name, price } = product;
+    const { id, img, name, price, rate } = product;
     const history = useHistory();
     const clickHandler = () => {
         history.push(PRODUCT_ROUTE + "/" + id);
@@ -51,8 +52,10 @@ const ProductCard = ({ product }) => {
                             ID товара: {id}
                         </Typography>
                         <Typography variant="body1" component="p">
-                            {price}$
+                            Цена: {price}$
                         </Typography>
+                        <Typography variant="body1" component="p">Оценка:</Typography>
+                        <Rating  value={rate} readOnly precision={0.1} />
                     </CardContent>
                 </Grid>
                 <Grid item xs={3} alignSelf="end">

@@ -1,4 +1,4 @@
-import { RESET_CATEGORY, SELECT_CATEGORY, SET_CATEGORIES, SET_PRODUCTS } from "../actions/types"
+import { RESET_CATEGORY, SELECT_CATEGORY, SET_CATEGORIES, SET_PRODUCTS, SET_SORT_ORDER, SET_SORT_TYPE } from "../actions/types"
 
 const initialState = {
     products: [
@@ -16,7 +16,8 @@ const initialState = {
         {id: 3, name: 'Смартфоны'},
         {id: 4, name: 'Мебель'}
     ],
-    selectedCategory: null
+    selectedCategory: null,
+    sortBy: {type: "rate", order: "desc"}
 }
 
 export const productReducer = (state = initialState, action) => {
@@ -25,6 +26,8 @@ export const productReducer = (state = initialState, action) => {
         case SET_CATEGORIES: return {...state, categories: action.payload}
         case SELECT_CATEGORY: return {...state, selectedCategory: action.payload}
         case RESET_CATEGORY: return {...state, selectedCategory: null}
+        case SET_SORT_TYPE: return {...state, sortBy: {...state.sortBy, type: action.payload}}
+        case SET_SORT_ORDER: return {...state, sortBy: {...state.sortBy, order: action.payload}}
         default: return state
     }
 }

@@ -13,7 +13,7 @@ import useInput from "../hooks/useInput";
 
 const useStyles = makeStyles((theme) => ({
     field: {
-        marginBottom: '1rem',
+        marginBottom: theme.spacing(2),
     },
     container: {
         display: "flex",
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
         width: "100%",
         display: "flex",
         justifyContent: (props) => props.isLogin ? "space-between" : "center",
-    }
+    },
 }));
 
 const Auth = () => {
@@ -55,7 +55,7 @@ const Auth = () => {
     };
     return (
         <Container className={classes.container}>
-            <Typography variant={"h4"} component={"h2"}>
+            <Typography className={classes.p} variant={"h4"} component={"h2"}>
                 {isLogin ? "Вход" : "Регистрация"}
             </Typography>
             <form className={classes.form}>
@@ -89,6 +89,7 @@ const Auth = () => {
                     )}
 
                     <Button
+                        className={classes.btn}
                         onClick={isLogin ? signIn : signUp}
                         variant={"contained"}
                         color={"success"}
