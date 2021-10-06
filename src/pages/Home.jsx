@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Home = () => {
+    
     const products = useSelector((state) => state.products.products);
     const selectedCategory = useSelector(
         (state) => state.products.selectedCategory

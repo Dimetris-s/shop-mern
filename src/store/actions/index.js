@@ -1,5 +1,6 @@
 import {
     CLEAR_SEARCH,
+    CREATE_USER,
     REMOVE_USER,
     RESET_CATEGORY,
     SELECT_CATEGORY,
@@ -59,3 +60,4 @@ export const setSearchValue = value => ({
 export const clearSearch = () => ({
     type: CLEAR_SEARCH
 })
+export const createUser = user => ({type: CREATE_USER, payload: user})

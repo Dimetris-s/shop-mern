@@ -2,18 +2,22 @@ import { Button, Typography } from "@material-ui/core";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { clearSearch, resetSelectedCategory, setCategory } from "../store/actions";
+import {
+    clearSearch,
+    resetSelectedCategory,
+    setCategory,
+} from "../store/actions";
 import GroupList from "./GroupList";
 
 const CategoryFilter = () => {
-    const dispatch = useDispatch()
-    const {categories, selectedCategory} = useSelector(state => state.products)
-
+    const dispatch = useDispatch();
+    const { categories, selectedCategory } = useSelector(
+        (state) => state.products
+    );
     const onItemChange = (item) => {
-        dispatch(clearSearch())
+        dispatch(clearSearch());
         dispatch(setCategory(item));
     };
-    console.log('render filter')
     return (
         <>
             <Typography variant="h6" gutterBottom>

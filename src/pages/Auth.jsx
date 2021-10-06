@@ -7,9 +7,12 @@ import {
 } from "@material-ui/core";
 import useLoginLocation from "../hooks/useLoginLocation";
 import { makeStyles } from "@material-ui/styles";
-import { LOGIN_ROUTE, REGISTRATION_ROUTE } from "../utils/consts";
+import { HOME_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE } from "../utils/consts";
 import { useHistory } from "react-router-dom";
 import useInput from "../hooks/useInput";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { createUser, setUser } from "../store/actions";
 
 const useStyles = makeStyles((theme) => ({
     field: {
@@ -36,22 +39,46 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Auth = () => {
+    const dispatch = useDispatch()
     const isLogin = useLoginLocation();
     const history = useHistory();
     const classes = useStyles({isLogin});
     const login = useInput();
     const password = useInput();
 
+    const users = useSelector(state => state.user.users)
     const signIn = (e) => {
         e.preventDefault();
-        console.log("login...");
-        console.log(login.value, password.value);
+        const existingUser = users.find(({username, password: userPass}) => {
+            return (login.value.toLowerCase() === username.toLowerCase() && password.value === userPass)
+        })
+
+        if(existingUser) {
+            dispatch(setUser(existingUser))
+            localStorage.setItem('user', JSON.stringify(existingUser))
+            history.push(HOME_ROUTE)
+        } else {
+            console.log('user not found')
+        }
     };
 
     const signUp = (e) => {
         e.preventDefault();
-        console.log("register...");
-        history.push(LOGIN_ROUTE);
+        const existingUser = users.find(({username}) => login.value.toLowerCase() === username.toLowerCase())
+        
+        if(existingUser) {
+            console.log('Такой пользователь уже существует');
+        } else {
+            const newUser = {
+                username: login.value,
+                password: password.value,
+                isAdmin: false
+            }
+            console.log('Пользователь зарегестрирован', newUser);
+            dispatch(createUser(newUser))
+            history.push(LOGIN_ROUTE);
+        }
+
     };
     return (
         <Container className={classes.container}>
