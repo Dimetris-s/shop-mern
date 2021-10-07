@@ -1,6 +1,7 @@
 import {
     CLEAR_SEARCH,
     CREATE_USER,
+    HIDE_ALERT,
     REMOVE_USER,
     RESET_CATEGORY,
     SELECT_CATEGORY,
@@ -11,6 +12,7 @@ import {
     SET_SORT_ORDER,
     SET_SORT_TYPE,
     SET_USER,
+    SHOW_ALERT,
     STOP_LOADING
 } from "./types";
 
@@ -60,4 +62,15 @@ export const setSearchValue = value => ({
 export const clearSearch = () => ({
     type: CLEAR_SEARCH
 })
-export const createUser = user => ({type: CREATE_USER, payload: user})
+export const createUser = user => ({
+    type: CREATE_USER,
+    payload: user
+})
+
+export const showAlert = alert => ({
+    type: SHOW_ALERT,
+    payload: alert
+})
+export const hideAlert = () => ({
+    type: HIDE_ALERT
+})

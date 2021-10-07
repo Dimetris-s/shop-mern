@@ -1,8 +1,7 @@
 import { TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { resetSelectedCategory, setSearchValue } from "../store/actions";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -10,17 +9,10 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: theme.spacing(3),
     },
 }));
-const Search = () => {
+const Search = ({onSearch}) => {
     const classes = useStyles();
-    const dispatch = useDispatch();
-    const {searchValue, selectedCategory} = useSelector((state) => state.products);
-
-    const onSearch = (event) => {
-        if(selectedCategory) {
-            dispatch(resetSelectedCategory());
-        }
-        dispatch(setSearchValue(event.target.value));
-    };
+    const searchValue = useSelector((state) => state.products.searchValue);
+    
     return (
         <div className={classes.root}>
             <TextField

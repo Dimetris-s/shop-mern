@@ -12,7 +12,7 @@ import { useHistory } from "react-router-dom";
 import useInput from "../hooks/useInput";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { createUser, setUser } from "../store/actions";
+import { createUser, setUser, showAlert } from "../store/actions";
 
 const useStyles = makeStyles((theme) => ({
     field: {
@@ -50,7 +50,7 @@ const Auth = () => {
     const signIn = (e) => {
         e.preventDefault();
         const existingUser = users.find(({username, password: userPass}) => {
-            return (login.value.toLowerCase() === username.toLowerCase() && password.value === userPass)
+            return (login.value.toLowerCase().trim() === username.toLowerCase() && password.value === userPass)
         })
 
         if(existingUser) {
@@ -58,7 +58,9 @@ const Auth = () => {
             localStorage.setItem('user', JSON.stringify(existingUser))
             history.push(HOME_ROUTE)
         } else {
-            console.log('user not found')
+            dispatch(showAlert({type: 'error', text: 'Неправильное имя пользователя или пароль!'}))
+            login.clear()
+            password.clear()
         }
     };
 
@@ -67,14 +69,17 @@ const Auth = () => {
         const existingUser = users.find(({username}) => login.value.toLowerCase() === username.toLowerCase())
         
         if(existingUser) {
-            console.log('Такой пользователь уже существует');
+            dispatch(showAlert({type: 'warning', text: 'Пользователь с таким именем уже существует!'}))
+            login.clear()
+            password.clear()
         } else {
             const newUser = {
+                id: Date.now(),
                 username: login.value,
                 password: password.value,
                 isAdmin: false
             }
-            console.log('Пользователь зарегестрирован', newUser);
+            dispatch(showAlert({type: 'success', text: 'Пользователь успешно зарегестрирован!'}))
             dispatch(createUser(newUser))
             history.push(LOGIN_ROUTE);
         }

@@ -4,15 +4,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeUser } from "../store/actions";
 import {
     AppBar,
+    Badge,
     Button,
     Container,
+    IconButton,
     Toolbar,
     Typography,
 } from "@material-ui/core";
 import { useHistory } from "react-router";
-import { DASHBOARD_ROUTE, HOME_ROUTE, LOGIN_ROUTE } from "../utils/consts";
+import { BASKET_ROUTE, DASHBOARD_ROUTE, HOME_ROUTE, LOGIN_ROUTE } from "../utils/consts";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/styles";
+import { ShoppingCartOutlined } from "@material-ui/icons";
 
 const useStyles = makeStyles({
     actions: {
@@ -38,13 +41,17 @@ const Header = () => {
         if (isAuth) {
             return (
                 <>
-                    <Typography>{username}</Typography>
+                    <IconButton onClick={() => history.push(BASKET_ROUTE)}>
+                        <Badge badgeContent={1} color="warning">
+                            <ShoppingCartOutlined sx={{ color: "white" }} />
+                        </Badge>
+                    </IconButton>
                     {isAdmin && (
                         <Button
                             onClick={() => history.push(DASHBOARD_ROUTE)}
                             size="small"
-                            color="success"
-                            variant="contained">
+                            sx={{ color: "white" }}
+                            variant="text">
                             Dashboard
                         </Button>
                     )}
@@ -72,16 +79,15 @@ const Header = () => {
 
     return (
         <AppBar position="static">
-            <Container>
+            <Container maxWidth="xl">
                 <Toolbar style={{ justifyContent: "space-between" }}>
                     <Link
                         style={{ color: "white", textDecoration: "none" }}
                         to={HOME_ROUTE}>
                         BestShop
                     </Link>
-                    <div className={classes.actions}>
-                        {renderActions()}
-                    </div>
+                    <Typography>{username}</Typography>
+                    <div className={classes.actions}>{renderActions()}</div>
                 </Toolbar>
             </Container>
         </AppBar>

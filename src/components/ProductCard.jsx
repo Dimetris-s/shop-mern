@@ -5,22 +5,31 @@ import {
     CardContent,
     CardMedia,
     Grid,
-    Rating,
+    Rating, 
     Typography,
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/styles"
+import { AddShoppingCartOutlined } from "@material-ui/icons";
+import { makeStyles } from "@material-ui/styles";
 import React from "react";
 import { useHistory } from "react-router";
+import useAuthState from "../hooks/useAuthState";
 import { PRODUCT_ROUTE } from "../utils/consts";
 
-const useStyle = makeStyles(theme => ({
+const useStyle = makeStyles((theme) => ({
     image: {
-        width: '100%',
+        width: "100%",
         maxHeight: 200,
-        objectFit: 'contain !important',
-        objectPosition: 'center'
-    }
-}))
+        objectFit: "contain",
+        objectPosition: "center",
+    },
+    actions: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        height: '100%'
+    },
+}));
 
 const ProductCard = ({ product }) => {
     const { id, img, name, price, rate } = product;
@@ -28,11 +37,13 @@ const ProductCard = ({ product }) => {
     const clickHandler = () => {
         history.push(PRODUCT_ROUTE + "/" + id);
     };
+    const isAuth = useAuthState();
 
-    const classes = useStyle()
+    const classes = useStyle({isAuth});
+
     return (
         <Card sx={{ p: 2 }}>
-            <Grid container spacing="5">
+            <Grid container spacing="5" justifyContent="space-between">
                 <Grid item xs={3}>
                     <CardMedia
                         className={classes.image}
@@ -54,13 +65,29 @@ const ProductCard = ({ product }) => {
                         <Typography variant="body1" component="p">
                             Цена: {price}$
                         </Typography>
-                        <Typography variant="body1" component="p">Оценка:</Typography>
-                        <Rating  value={rate} readOnly precision={0.1} />
+                        <Typography variant="body1" component="p">
+                            Оценка:
+                        </Typography>
+                        <Rating value={rate} readOnly precision={0.1} />
                     </CardContent>
                 </Grid>
-                <Grid item xs={3} alignSelf="end">
-                    <CardActions>
+                <Grid item xs={3}>
+                    <CardActions className={classes.actions}>
+                        {isAuth && (
+                            <Button
+                            fullWidth
+                                size="small"
+                                variant="outlined"
+                                color="success"
+                                endIcon={<AddShoppingCartOutlined />}
+                                sx={{marginBottom: '1rem' }}
+                                >
+                                В корзину
+                            </Button>
+                        )}
+
                         <Button
+                        fullWidth
                             onClick={clickHandler}
                             color="success"
                             variant="contained"
