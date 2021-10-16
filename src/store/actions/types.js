@@ -16,3 +16,7 @@ export const STOP_LOADING = 'LOADING/STOP_LOADING'
 
 export const SHOW_ALERT = 'ALERT/SHOW_ALERT'
 export const HIDE_ALERT = 'ALERT/HIDE_ALERT'
+
+export const INCR_ITEM = 'BASKET/INCR_ITEM'
+export const DECR_ITEM = 'BASKET/DECR_ITEM'
+export const SET_ITEMS = 'BASKET/SET_ITEMS'

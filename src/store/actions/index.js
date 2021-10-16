@@ -1,11 +1,16 @@
 import {
+    ADD_ITEM,
     CLEAR_SEARCH,
     CREATE_USER,
+    DECR_ITEM,
     HIDE_ALERT,
+    INCR_ITEM,
+    REMOVE_ITEM,
     REMOVE_USER,
     RESET_CATEGORY,
     SELECT_CATEGORY,
     SET_CATEGORIES,
+    SET_ITEMS,
     SET_LOADING,
     SET_PRODUCTS,
     SET_SAERCH_VALUE,
@@ -73,4 +78,10 @@ export const showAlert = alert => ({
 })
 export const hideAlert = () => ({
     type: HIDE_ALERT
+})
+
+
+export const setCartItems = items => ({
+    type: SET_ITEMS,
+    payload: items
 })
