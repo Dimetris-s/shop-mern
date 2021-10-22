@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import AuthState from './hoc/AuthState';
+import BasketState from './hoc/BasketState';
 import store from './store';
 
 const application = (
@@ -12,7 +13,9 @@ const application = (
     <BrowserRouter>
       <StyledEngineProvider injectFirst>
         <AuthState>
-          <App/>
+          <BasketState>
+            <App/>
+          </BasketState>
         </AuthState>
       </StyledEngineProvider>
     </BrowserRouter>

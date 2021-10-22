@@ -98,6 +98,7 @@ export const fetchBasketItems = basketId => {
         dispatch(setLoading("basket"))
         const {data} = await axios.get(`/basket_items?basket_id=${basketId}`)
         dispatch(setBasketItems(data))
+        dispatch(setTotalCount(data.length))
         dispatch(stopLoading("basket"))
     }
 }

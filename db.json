@@ -89,7 +89,6 @@
         { "id": "4", "basket_id": "1", "product_id": "5", "count": 3 },
         { "id": "5", "basket_id": "2", "product_id": "3", "count": 2 },
         { "id": "5", "basket_id": "2", "product_id": "5", "count": 6 },
-        { "id": "6", "basket_id": "2", "product_id": "5", "count": 1 },
-        { "id": "7", "basket_id": "2", "product_id": "7", "count": 3 }
+        { "id": "6", "basket_id": "2", "product_id": "5", "count": 1 }
     ]
 }
