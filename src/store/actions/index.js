@@ -1,3 +1,4 @@
+import axios from "../../utils/axios";
 import {
     CLEAR_SEARCH,
     CREATE_USER,
@@ -5,12 +6,15 @@ import {
     REMOVE_USER,
     RESET_CATEGORY,
     SELECT_CATEGORY,
+    SET_BASKET_ITEMS,
     SET_CATEGORIES,
     SET_LOADING,
     SET_PRODUCTS,
     SET_SAERCH_VALUE,
     SET_SORT_ORDER,
     SET_SORT_TYPE,
+    SET_TOTAL_COUNT,
+    SET_TOTAL_PRICE,
     SET_USER,
     SHOW_ALERT,
     STOP_LOADING
@@ -74,3 +78,44 @@ export const showAlert = alert => ({
 export const hideAlert = () => ({
     type: HIDE_ALERT
 })
+
+export const setBasketItems = items => ({
+    type: SET_BASKET_ITEMS,
+    payload: items
+})
+export const setTotalPrice = price => ({
+    type: SET_TOTAL_PRICE,
+    payload: price
+})
+export const setTotalCount = count => ({
+    type: SET_TOTAL_COUNT,
+    payload: count
+})
+
+
+export const fetchBasketItems = basketId => {
+    return async dispatch => {
+        dispatch(setLoading("basket"))
+        const {data} = await axios.get(`/basket_items?basket_id=${basketId}`)
+        dispatch(setBasketItems(data))
+        dispatch(stopLoading("basket"))
+    }
+}
+
+export const fetchProducts = () => {
+    return async dispatch => {
+        dispatch(setLoading("products"))
+        const response = await axios.get('/products')
+        dispatch(setProducts(response.data))
+        dispatch(stopLoading("products"))
+    }
+}
+
+export const fetchCategories = () => {
+    return async dispatch => {
+        dispatch(setLoading("categories"))
+        const response = await axios.get('/categories')
+        dispatch(setCategories(response.data))
+        dispatch(stopLoading("categories"))
+    }
+}

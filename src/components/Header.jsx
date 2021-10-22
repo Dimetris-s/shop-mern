@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useAuthState from "../hooks/useAuthState";
 import { useDispatch, useSelector } from "react-redux";
-import { removeUser } from "../store/actions";
+import { fetchBasketItems, removeUser, setTotalCount } from "../store/actions";
 import {
     AppBar,
     Badge,
@@ -16,6 +16,7 @@ import { BASKET_ROUTE, DASHBOARD_ROUTE, HOME_ROUTE, LOGIN_ROUTE } from "../utils
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/styles";
 import { ShoppingCartOutlined } from "@material-ui/icons";
+import { getBasketByUserId } from "../utils/axios";
 
 const useStyles = makeStyles({
     actions: {
@@ -29,8 +30,24 @@ const Header = () => {
     const isAuth = useAuthState();
     const history = useHistory();
     const dispatch = useDispatch();
-    const { username, isAdmin } = useSelector((state) => state.user.user);
+    const {id:userId, username, isAdmin } = useSelector((state) => state.user.user);
+    const {items:basketItems, totalCount} = useSelector(state => state.basket)
     const classes = useStyles();
+
+    useEffect( () => {
+        async function fetchData() {
+            if(isAuth) {
+                const basket = await getBasketByUserId(userId)
+                dispatch(fetchBasketItems(basket.id))
+            }
+        }
+        fetchData()
+        
+    }, [isAuth])
+    useEffect(() => {
+        dispatch(setTotalCount(basketItems.length))
+    }, [basketItems])
+
     const signOut = () => {
         dispatch(removeUser());
         localStorage.removeItem("user");
@@ -42,7 +59,7 @@ const Header = () => {
             return (
                 <>
                     <IconButton onClick={() => history.push(BASKET_ROUTE)}>
-                        <Badge badgeContent={1} color="warning">
+                        <Badge badgeContent={totalCount} color="warning">
                             <ShoppingCartOutlined sx={{ color: "white" }} />
                         </Badge>
                     </IconButton>

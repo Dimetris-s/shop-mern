@@ -1,9 +1,10 @@
 import { SET_LOADING, STOP_LOADING } from "../actions/types";
 
 const initialState = {
-    products: false,
-    categories: false,
-    user: false
+    products: true,
+    categories: true,
+    user: false,
+    basket: true
 }
 
 export const loadingReducer = (state = initialState, action) => {
