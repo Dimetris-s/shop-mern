@@ -4,9 +4,9 @@ import { setUser } from "../store/actions";
 
 const AuthState = ({ children }) => {
     const dispatch = useDispatch()
-    const user = localStorage.getItem('user')
+    const user = JSON.parse(localStorage.getItem('user'))
     if(user) {
-        dispatch(setUser(JSON.parse(user)))
+        dispatch(setUser(user))
     }
     return <>{children}</>
 };

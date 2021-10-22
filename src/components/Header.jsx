@@ -30,7 +30,10 @@ const Header = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const { username, isAdmin } = useSelector((state) => state.user.user);
+    const {totalCount} = useSelector(state => state.basket)
     const classes = useStyles();
+
+
     const signOut = () => {
         dispatch(removeUser());
         localStorage.removeItem("user");
@@ -42,7 +45,7 @@ const Header = () => {
             return (
                 <>
                     <IconButton onClick={() => history.push(BASKET_ROUTE)}>
-                        <Badge badgeContent={1} color="warning">
+                        <Badge badgeContent={totalCount} color="warning">
                             <ShoppingCartOutlined sx={{ color: "white" }} />
                         </Badge>
                     </IconButton>
