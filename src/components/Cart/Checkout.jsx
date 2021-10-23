@@ -1,8 +1,6 @@
 import { Card, CardContent, CardActions, Button, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import React from "react";
-import { useSelector } from "react-redux";
-
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -19,11 +17,13 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const Checkout = () => {
+const Checkout = ({products}) => {
     const classes = useStyles()
-    const cart = useSelector(state => state.basket.items)
     const getTotalCount = () => {
-        return cart.reduce((acc, item) => acc + item.count, 0)
+        return products.reduce((acc, product) => acc + product.count, 0)
+    }
+    const getTotalPrice = () => {
+        return products.reduce((acc, product) => acc + product.price * product.count, 0)
     }
     return (
         <Card className={classes.root} elevation={5}>
@@ -35,7 +35,7 @@ const Checkout = () => {
                     Количество товара: <span>{getTotalCount()}</span>
                 </Typography>
                 <Typography variant="subtitle1" className={classes.text}>
-                    Итого: <span>12500$</span>
+                    Итого: <span>{getTotalPrice()}$</span>
                 </Typography>
             </CardContent>
             <CardActions>

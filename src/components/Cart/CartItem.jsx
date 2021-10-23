@@ -8,9 +8,7 @@ import {
 } from "@material-ui/core";
 import { Add, Cancel, Remove } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/styles";
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import Loader from "../Loader";
+import React from "react";
 
 const useStyles = makeStyles((theme) => ({
     item: {
@@ -43,26 +41,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const CartItem = ({ item }) => {
+const CartItem = ({ product, onDelete, onIncrement, onDecrement }) => {
     const classes = useStyles();
-    const products = useSelector((state) => state.products.products);
-    const [count, setCount] = useState(item.count);
-    const [product, setProduct] = useState()
 
-    const getProductById = (id) => products.find((product) => product.id === id);
-    useEffect(() => {
-        console.log(getProductById(item.id))
-    }, [])
+    const getPrice = () => product.price * product.count;
 
-    const getPrice = () => product.price * count;
-    const incrCount = () => {
-        setCount((prevState) => prevState + 1);
-    };
-    const decrCount = () => {
-        setCount((prevState) => prevState - 1);
-    };
+    if(!product.count) return null
 
-    if(!product) return <Loader/>
     return (
         <Card elevation={4} component="li" className={classes.item}>
             <CardMedia
@@ -79,15 +64,15 @@ const CartItem = ({ item }) => {
                 </Typography>
             </CardContent>
             <CardActions className={classes.actions}>
-                <IconButton color="error">
+                <IconButton onClick={() => onDelete(product.item_id)} color="error">
                     <Cancel />
                 </IconButton>
                 <div className={classes.counter}>
-                    <IconButton  onClick={decrCount} color="primary">
+                    <IconButton  onClick={() => onDecrement(product.item_id)} color="primary">
                         <Remove fontSize="small" />
                     </IconButton>
-                    <div className={classes.count}>{count}</div>
-                    <IconButton onClick={incrCount} color="primary">
+                    <div className={classes.count}>{product.count}</div>
+                    <IconButton onClick={() => onIncrement(product.item_id)} color="primary">
                         <Add fontSize="small" />
                     </IconButton>
                 </div>

@@ -6,6 +6,7 @@ import {
     REMOVE_USER,
     RESET_CATEGORY,
     SELECT_CATEGORY,
+    SET_BADGE_COUNT,
     SET_BASKET_ITEMS,
     SET_CATEGORIES,
     SET_LOADING,
@@ -92,13 +93,19 @@ export const setTotalCount = count => ({
     payload: count
 })
 
+export const setBadgeCount = count => ({
+    type: SET_BADGE_COUNT,
+    payload: count
+})
+
 
 export const fetchBasketItems = basketId => {
     return async dispatch => {
         dispatch(setLoading("basket"))
         const {data} = await axios.get(`/basket_items?basket_id=${basketId}`)
         dispatch(setBasketItems(data))
-        dispatch(setTotalCount(data.length))
+        dispatch(setBadgeCount(data.length))
+        dispatch(setTotalCount(data.reduce((acc, product) => acc + product.count, 0)))
         dispatch(stopLoading("basket"))
     }
 }

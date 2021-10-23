@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { fetchBasketItems, setTotalCount } from '../store/actions';
+import { fetchBasketItems, setBadgeCount } from '../store/actions';
 import { getBasketByUserId } from '../utils/axios';
 
 const BasketState = ({children}) => {
@@ -15,8 +15,9 @@ const BasketState = ({children}) => {
         if(user.id) {
             effect()
         } else {
-            dispatch(setTotalCount(0))
+            dispatch(setBadgeCount(0))
         }
+        // eslint-disable-next-line
     }, [user])
     return ( <>{children}</> );
 }

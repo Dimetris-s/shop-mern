@@ -3,24 +3,54 @@ import {
     Grid,
     Typography
 } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import CartList from "../components/Cart/CartList";
 import Checkout from "../components/Cart/Checkout";
 import Loader from "../components/Loader";
 import Search from "../components/Search";
+import { fetchBasketItems, fetchProducts, setBasketItems } from "../store/actions";
+import { decrementBasketItem, deleteBasketItem, incrementBasketItem } from "../utils/axios";
 
 
 const Basket = () => {
-    const onSearch = () => {};
+    const dispatch = useDispatch()
     const items = useSelector(state => state.basket.items)
     const products = useSelector(state => state.products.products)
-    console.log('items', items);
-    console.log('products', products);
+    const {id: userId} = useSelector(state => state.user.user)
+    useEffect(() => {
+        dispatch(fetchProducts())
+        dispatch(fetchBasketItems(userId))
+        // eslint-disable-next-line
+    }, [])
+    const basketProducts = items.map(item => {
+        return {
+            count: item.count,
+            item_id: item.id,
+            ...products.find(product => product.id === item.product_id)
+        }
+    })
+    const onSearch = () => {
+        
+    };
 
-    const basketProducts = items.map(item => products.find(product => product.id === item.product_id))
-    console.log(basketProducts);
+    const onIncrement = id => {
+        const newItems = items.map(item => item.id === id ? {...item, count: item.count + 1} : item)
+        dispatch(setBasketItems(newItems))
+        incrementBasketItem(id)
+    }
 
+    const onDecrement = id => {
+        const newItems = items.map(item => item.id === id ? {...item, count: item.count - 1} : item)
+        dispatch(setBasketItems(newItems))
+        decrementBasketItem(id)
+
+    }
+    const onDelete = id => {
+        const newItems = items.filter(item => item.id !== id)
+        dispatch(setBasketItems(newItems))
+        deleteBasketItem(id)
+    }
     return (
         <Container maxWidth="lg">
             <Search onSearch={onSearch} />
@@ -29,10 +59,10 @@ const Basket = () => {
             </Typography>
             <Grid container spacing="15">
                 <Grid item xs={9}>
-                    {items ? <CartList items={items}/> : <Loader/>}
+                    {basketProducts.length ? <CartList {...{onIncrement, onDecrement, onDelete}} items={basketProducts}/> : <Loader/>}
                 </Grid>
                 <Grid item xs={3}>
-                    <Checkout />
+                    <Checkout products={basketProducts}/>
                 </Grid>
             </Grid>
         </Container>

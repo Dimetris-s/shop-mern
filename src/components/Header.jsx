@@ -31,8 +31,7 @@ const Header = () => {
     const dispatch = useDispatch();
     const { username, isAdmin } = useSelector((state) => state.user.user);
     
-    const {items} = useSelector(state => state.basket)
-    const totalCount = items.length
+    const {badgeCount} = useSelector(state => state.basket)
     const classes = useStyles();
 
 
@@ -47,7 +46,7 @@ const Header = () => {
             return (
                 <>
                     <IconButton onClick={() => history.push(BASKET_ROUTE)}>
-                        <Badge badgeContent={totalCount} color="warning">
+                        <Badge badgeContent={badgeCount} color="warning">
                             <ShoppingCartOutlined sx={{ color: "white" }} />
                         </Badge>
                     </IconButton>

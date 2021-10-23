@@ -12,3 +12,20 @@ export const getBasketByUserId = async id => {
     return data[0]
 }
 
+export const incrementBasketItem = async id => {
+    const {data} = await instance.get(`/basket_items/${id}`)
+    instance.put(`/basket_items/${id}`, {...data, count: data.count + 1})
+}
+
+export const decrementBasketItem = async id => {
+    const {data} = await instance.get(`/basket_items/${id}`)
+    if(data.count === 1) {
+        deleteBasketItem(id)
+    } else {
+        instance.put(`/basket_items/${id}`, {...data, count: data.count - 1})
+    }
+}
+
+export const deleteBasketItem = async id => {
+    instance.delete(`/basket_items/${id}`)
+}
