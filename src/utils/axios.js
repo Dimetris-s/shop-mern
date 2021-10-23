@@ -29,3 +29,7 @@ export const decrementBasketItem = async id => {
 export const deleteBasketItem = async id => {
     instance.delete(`/basket_items/${id}`)
 }
+
+export const addBasketItem = async item => {
+    instance.post(`/basket_items/`, item)
+}

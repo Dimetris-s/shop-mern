@@ -9,7 +9,7 @@ import CartList from "../components/Cart/CartList";
 import Checkout from "../components/Cart/Checkout";
 import Loader from "../components/Loader";
 import Search from "../components/Search";
-import { fetchBasketItems, fetchProducts, setBasketItems } from "../store/actions";
+import { fetchBasketItems, fetchProducts, setBasketItems, setSearchValue } from "../store/actions";
 import { decrementBasketItem, deleteBasketItem, incrementBasketItem } from "../utils/axios";
 
 
@@ -18,20 +18,15 @@ const Basket = () => {
     const items = useSelector(state => state.basket.items)
     const products = useSelector(state => state.products.products)
     const {id: userId} = useSelector(state => state.user.user)
+    const searchValue = useSelector(state => state.products.searchValue)
     useEffect(() => {
         dispatch(fetchProducts())
         dispatch(fetchBasketItems(userId))
         // eslint-disable-next-line
     }, [])
-    const basketProducts = items.map(item => {
-        return {
-            count: item.count,
-            item_id: item.id,
-            ...products.find(product => product.id === item.product_id)
-        }
-    })
-    const onSearch = () => {
-        
+    
+    const onSearch = (event) => {
+        dispatch(setSearchValue(event.target.value))
     };
 
     const onIncrement = id => {
@@ -51,6 +46,18 @@ const Basket = () => {
         dispatch(setBasketItems(newItems))
         deleteBasketItem(id)
     }
+    const basketProducts = items.map(item => {
+        return {
+            count: item.count,
+            item_id: item.id,
+            ...products.find(product => product.id === item.product_id)
+        }
+    })
+    const foundProducts = searchValue
+    ? basketProducts.filter((product) =>
+          product.name.toLowerCase().match(searchValue.toLowerCase())
+      )
+    : basketProducts;
     return (
         <Container maxWidth="lg">
             <Search onSearch={onSearch} />
@@ -59,7 +66,7 @@ const Basket = () => {
             </Typography>
             <Grid container spacing="15">
                 <Grid item xs={9}>
-                    {basketProducts.length ? <CartList {...{onIncrement, onDecrement, onDelete}} items={basketProducts}/> : <Loader/>}
+                    {foundProducts.length ? <CartList {...{onIncrement, onDecrement, onDelete}} items={foundProducts}/> : <Loader/>}
                 </Grid>
                 <Grid item xs={3}>
                     <Checkout products={basketProducts}/>

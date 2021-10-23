@@ -75,7 +75,7 @@ const ProductCard = ({ product }) => {
                     <CardActions className={classes.actions}>
                         {isAuth && (
                             <Button
-                            fullWidth
+                                fullWidth
                                 size="small"
                                 variant="outlined"
                                 color="success"
@@ -87,7 +87,7 @@ const ProductCard = ({ product }) => {
                         )}
 
                         <Button
-                        fullWidth
+                            fullWidth
                             onClick={clickHandler}
                             color="success"
                             variant="contained"
