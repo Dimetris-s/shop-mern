@@ -8,8 +8,9 @@ import {
 } from "@material-ui/core";
 import { Add, Cancel, Remove } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/styles";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import Loader from "../Loader";
 
 const useStyles = makeStyles((theme) => ({
     item: {
@@ -46,9 +47,13 @@ const CartItem = ({ item }) => {
     const classes = useStyles();
     const products = useSelector((state) => state.products.products);
     const [count, setCount] = useState(item.count);
-    const getProductById = (id) =>
-        products.find((product) => product.id === item.productId);
-    const product = getProductById(item.id);
+    const [product, setProduct] = useState()
+
+    const getProductById = (id) => products.find((product) => product.id === id);
+    useEffect(() => {
+        console.log(getProductById(item.id))
+    }, [])
+
     const getPrice = () => product.price * count;
     const incrCount = () => {
         setCount((prevState) => prevState + 1);
@@ -56,6 +61,8 @@ const CartItem = ({ item }) => {
     const decrCount = () => {
         setCount((prevState) => prevState - 1);
     };
+
+    if(!product) return <Loader/>
     return (
         <Card elevation={4} component="li" className={classes.item}>
             <CardMedia

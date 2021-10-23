@@ -1,18 +1,13 @@
 import axios from "../../utils/axios";
 import {
-    ADD_ITEM,
     CLEAR_SEARCH,
     CREATE_USER,
-    DECR_ITEM,
     HIDE_ALERT,
-    INCR_ITEM,
-    REMOVE_ITEM,
     REMOVE_USER,
     RESET_CATEGORY,
     SELECT_CATEGORY,
     SET_BASKET_ITEMS,
     SET_CATEGORIES,
-    SET_ITEMS,
     SET_LOADING,
     SET_PRODUCTS,
     SET_SAERCH_VALUE,

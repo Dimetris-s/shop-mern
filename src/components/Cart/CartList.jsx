@@ -16,11 +16,11 @@ const useStyles = makeStyles(theme => ({
 
 const CartList = ({ items }) => {
     const classes = useStyles()
-    console.log(items);
+    
     return (
         <Paper elevation={4} className={classes.basketContainer}>
             <ul className={classes.list}>
-                {items.map(item => <CartItem item={item}/>)}
+                {items.map(item => <CartItem key={item.id} item={item}/>)}
             </ul>
         </Paper>
     );

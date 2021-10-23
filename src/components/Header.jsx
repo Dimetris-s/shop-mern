@@ -30,7 +30,9 @@ const Header = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const { username, isAdmin } = useSelector((state) => state.user.user);
-    const {totalCount} = useSelector(state => state.basket)
+    
+    const {items} = useSelector(state => state.basket)
+    const totalCount = items.length
     const classes = useStyles();
 
 
