@@ -99,54 +99,5 @@
       "user_id": "2"
     }
   ],
-  "basket_items": [
-    {
-      "id": "10",
-      "basket_id": "1",
-      "product_id": "1",
-      "count": 2
-    },
-    {
-      "id": "2",
-      "basket_id": "1",
-      "product_id": "2",
-      "count": 6
-    },
-    {
-      "id": "3",
-      "basket_id": "1",
-      "product_id": "3",
-      "count": 1
-    },
-    {
-      "id": "4",
-      "basket_id": "1",
-      "product_id": "4",
-      "count": 1
-    },
-    {
-      "id": "5",
-      "basket_id": "1",
-      "product_id": "5",
-      "count": 3
-    },
-    {
-      "id": "6",
-      "basket_id": "2",
-      "product_id": "3",
-      "count": 2
-    },
-    {
-      "id": "7",
-      "basket_id": "2",
-      "product_id": "5",
-      "count": 6
-    },
-    {
-      "id": "8",
-      "basket_id": "2",
-      "product_id": "2",
-      "count": 1
-    }
-  ]
+  "basket_items": []
 }

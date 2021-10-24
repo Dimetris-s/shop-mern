@@ -16,33 +16,38 @@ import useAuthState from "../hooks/useAuthState";
 import { PRODUCT_ROUTE } from "../utils/consts";
 
 const useStyle = makeStyles((theme) => ({
+    root: {
+        cursor: "pointer",
+        '&:hover': {
+            boxShadow: theme.shadows[4]
+        }
+    },
     image: {
         width: "100%",
         maxHeight: 200,
         objectFit: "contain",
         objectPosition: "center",
+        borderRadius: theme.shape.borderRadius * 2
     },
     actions: {
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
+        justifyContent: "start",
+        alignItems: "end",
         height: '100%'
-    },
+    }
 }));
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, onAdd }) => {
     const { id, img, name, price, rate } = product;
     const history = useHistory();
-    const clickHandler = () => {
-        history.push(PRODUCT_ROUTE + "/" + id);
-    };
     const isAuth = useAuthState();
 
     const classes = useStyle({isAuth});
-
+    
+    
     return (
-        <Card sx={{ p: 2 }}>
+        <Card className={classes.root} onClick={() => history.push(PRODUCT_ROUTE + "/" + id)} sx={{ p: 2 }}>
             <Grid container spacing="5" justifyContent="space-between">
                 <Grid item xs={3}>
                     <CardMedia
@@ -75,25 +80,15 @@ const ProductCard = ({ product }) => {
                     <CardActions className={classes.actions}>
                         {isAuth && (
                             <Button
-                                fullWidth
+                                onClick={(event) => onAdd(event, id)}
                                 size="small"
-                                variant="outlined"
+                                variant="contained"
                                 color="success"
                                 endIcon={<AddShoppingCartOutlined />}
-                                sx={{marginBottom: '1rem' }}
                                 >
                                 В корзину
                             </Button>
                         )}
-
-                        <Button
-                            fullWidth
-                            onClick={clickHandler}
-                            color="success"
-                            variant="contained"
-                            size="small">
-                            На страницу товара
-                        </Button>
                     </CardActions>
                 </Grid>
             </Grid>

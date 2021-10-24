@@ -14,7 +14,7 @@ const Alert = () => {
         dispatch(hideAlert())
       };
     return (
-        <Snackbar open={isOpen} autoHideDuration={4000} anchorOrigin={{horizontal: 'center', vertical: 'bottom'}} onClose={handleClose}>
+        <Snackbar open={isOpen} autoHideDuration={2500} anchorOrigin={{horizontal: 'center', vertical: 'bottom'}} onClose={handleClose}>
             <MUIAlert elevation={3}  onClose={handleClose} variant="filled" severity={type}>{text}</MUIAlert>
         </Snackbar>
     );
