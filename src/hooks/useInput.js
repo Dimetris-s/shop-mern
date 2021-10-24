@@ -1,21 +1,19 @@
-import {
-    useState
-} from "react"
+import { useState } from "react";
 
-const useInput = (initialValue = '') => {
-    const [value, setValue] = useState(initialValue)
+const useInput = (initialValue = "") => {
+	const [value, setValue] = useState(initialValue);
 
-    const clear = () => setValue('')
-    const onChange = e => setValue(e.target.value)
+	const clear = () => setValue("");
+	const onChange = e => setValue(e.target.value);
 
-    return {
-        bind: {
-            value,
-            onChange
-        },
-        clear,
-        value
-    }
-}
+	return {
+		bind: {
+			value,
+			onChange,
+		},
+		clear,
+		value,
+	};
+};
 
-export default useInput
+export default useInput;

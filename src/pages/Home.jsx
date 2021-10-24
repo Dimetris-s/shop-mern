@@ -3,12 +3,20 @@ import { makeStyles } from "@material-ui/styles";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { orderBy } from "lodash";
-import ProductList from "../components/ProductsList";
-import Sorting from "../components/Sorting";
-import Search from "../components/Search";
-import CategoryFilter from "../components/CategoryFilter";
-import { fetchCategories, fetchProducts, resetSelectedCategory, setBadgeCount, setBasketItems, setSearchValue, showAlert } from "../store/actions";
-import Loader from "../components/Loader";
+import ProductList from "../components/common/Product/ProductsList";
+import Sorting from "../components/common/Sorting";
+import Search from "../components/UI/Search";
+import CategoryFilter from "../components/common/CategoryFilter";
+import {
+	fetchCategories,
+	fetchProducts,
+	resetSelectedCategory,
+	setBadgeCount,
+	setBasketItems,
+	setSearchValue,
+	showAlert,
+} from "../store/actions";
+import Loader from "../components/UI/Loader";
 import { addBasketItem, incrementBasketItem } from "../utils/axios";
 
 const useStyles = makeStyles(theme => ({
@@ -62,7 +70,9 @@ const Home = () => {
 	};
 
 	const sortedProducts = orderBy(products, [sortBy.type], [sortBy.order]);
-	const filteredProducts = selectedCategory ? sortedProducts.filter(product => product.category === selectedCategory.name) : sortedProducts;
+	const filteredProducts = selectedCategory
+		? sortedProducts.filter(product => product.category === selectedCategory.name)
+		: sortedProducts;
 	const searchedProducts = searchValue
 		? sortedProducts.filter(product => product.name.toLowerCase().match(searchValue.toLowerCase()))
 		: filteredProducts;

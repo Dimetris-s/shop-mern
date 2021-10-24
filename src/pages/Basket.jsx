@@ -1,10 +1,10 @@
 import { Container, Grid, Typography } from "@material-ui/core";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CartList from "../components/Cart/CartList";
-import Checkout from "../components/Cart/Checkout";
-import Loader from "../components/Loader";
-import Search from "../components/Search";
+import CartList from "../components/common/Cart/CartList";
+import Checkout from "../components/common/Cart/Checkout";
+import Loader from "../components/UI/Loader";
+import Search from "../components/UI/Search";
 import { fetchBasketItems, fetchProducts, setBadgeCount, setBasketItems, setSearchValue } from "../store/actions";
 import { decrementBasketItem, deleteBasketItem, incrementBasketItem } from "../utils/axios";
 
