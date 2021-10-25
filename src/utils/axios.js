@@ -32,3 +32,8 @@ export const deleteBasketItem = async id => {
 export const addBasketItem = async item => {
 	instance.post(`/basket_items/`, item);
 };
+
+export const getProductById = async id => {
+	const {data} = await instance.get(`/products/${id}`)
+	return data
+}

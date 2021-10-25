@@ -3,7 +3,7 @@ import { SET_LOADING, STOP_LOADING } from "../actions/types";
 const initialState = {
 	products: true,
 	categories: true,
-	user: false,
+	user: true,
 	basket: true,
 };
 
