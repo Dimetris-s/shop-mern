@@ -8,6 +8,7 @@ import { AddShoppingCartOutlined } from "@material-ui/icons";
 import { Box } from "@material-ui/system";
 import { useDispatch, useSelector } from "react-redux";
 import { setBadgeCount, setBasketItems, showAlert } from "../store/actions";
+import useAuthState from "../hooks/useAuthState";
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -39,9 +40,10 @@ const useStyles = makeStyles(theme => ({
 const ProductPage = () => {
 	const classes = useStyles();
 	const { id } = useParams();
-	const dispatch = useDispatch()
-	const {items: basketItems, badgeCount, basket} = useSelector(state => state.basket)
-	const userId = useSelector(state => state.user.user.id)
+	const dispatch = useDispatch();
+	const isAuth = useAuthState();
+	const { items: basketItems, badgeCount, basket } = useSelector(state => state.basket);
+	const userId = useSelector(state => state.user.user.id);
 	const [product, setProduct] = useState();
 	useEffect(() => {
 		getProductById(id).then(product => setProduct(product));
@@ -49,7 +51,7 @@ const ProductPage = () => {
 	}, []);
 	console.log(product);
 
-	const addToCart = (id) => {
+	const addToCart = id => {
 		const basketItem = basketItems.find(item => item.product_id === id && basket.user_id === userId);
 		if (basketItem) {
 			incrementBasketItem(basketItem.id);
@@ -93,20 +95,20 @@ const ProductPage = () => {
 						</Typography>
 
 						<Typography variant="h6">Описание:</Typography>
-						<Typography variant="body1">
-							{product.description}
-						</Typography>
+						<Typography variant="body1">{product.description}</Typography>
 					</Grid>
 					<Grid item md={2}>
-						<Button
-							onClick={() => addToCart(id)}
-							size="large"
-							variant="contained"
-							color="success"
-							endIcon={<AddShoppingCartOutlined />}
-						>
-							В корзину
-						</Button>
+						{isAuth && (
+							<Button
+								onClick={() => addToCart(id)}
+								size="large"
+								variant="contained"
+								color="success"
+								endIcon={<AddShoppingCartOutlined />}
+							>
+								В корзину
+							</Button>
+						)}
 					</Grid>
 				</Grid>
 			</div>
