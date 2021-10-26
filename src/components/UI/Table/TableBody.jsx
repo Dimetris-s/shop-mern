@@ -19,7 +19,7 @@ const TableBody = ({ columns, data }) => {
             {data.map(item => (
                 <TableRow key={item.id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
                     {Object.keys(columns).map(column => (
-                        <TableCell key={column} align="center">{renderContent(item, column)}</TableCell>
+                        <TableCell key={column} align="left">{renderContent(item, column)}</TableCell>
                     ))}
                 </TableRow>
             ))}

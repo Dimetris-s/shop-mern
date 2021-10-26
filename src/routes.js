@@ -14,12 +14,15 @@ import {
 
 export const authRoutes = [
 	{
-		path: DASHBOARD_ROUTE,
-		Component: Dashboard,
-	},
-	{
 		path: BASKET_ROUTE,
 		Component: Basket,
+	},
+];
+
+export const adminRoutes = [
+	{
+		path: DASHBOARD_ROUTE,
+		Component: Dashboard,
 	},
 ];
 

@@ -2,13 +2,10 @@ import { IconButton, Tooltip } from "@material-ui/core";
 import { Delete, Edit } from "@material-ui/icons";
 import React from "react";
 
-const TableActions = ({ id }) => {
+const TableActions = ({ id, onDelete }) => {
     const onEdit = id => {
-        console.log('edit ' + id);
     }
-    const onDelete = id => {
-        console.log('delete ' + id);
-    }
+   
 	return (
 		<>
 			<Tooltip title="Редактировать">

@@ -26,7 +26,7 @@ const Sorting = () => {
 	return (
 		<div className={classes.root}>
 			<TextField select label="sort" value={sortBy.type} onChange={sortTypeHandler} size="small">
-				<MenuItem value="name">Название</MenuItem>
+				<MenuItem  value="name">Название</MenuItem>
 				<MenuItem value="price">Цена</MenuItem>
 				<MenuItem value="rate">Оценка</MenuItem>
 			</TextField>

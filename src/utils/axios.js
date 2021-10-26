@@ -37,3 +37,7 @@ export const getProductById = async id => {
 	const {data} = await instance.get(`/products/${id}`)
 	return data
 }
+
+export const deleteProduct = async id => {
+	instance.delete(`/products/${id}`)
+}

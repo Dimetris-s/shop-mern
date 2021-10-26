@@ -13,7 +13,9 @@ import {
 	resetSelectedCategory,
 	setBadgeCount,
 	setBasketItems,
+	setCategory,
 	setSearchValue,
+	setSortType,
 	showAlert,
 } from "../store/actions";
 import Loader from "../components/UI/Loader";
@@ -39,6 +41,8 @@ const Home = () => {
 	useEffect(() => {
 		dispatch(fetchProducts());
 		dispatch(fetchCategories());
+		dispatch(setSortType("rate"))
+		dispatch(setCategory())
 		// eslint-disable-next-line
 	}, []);
 

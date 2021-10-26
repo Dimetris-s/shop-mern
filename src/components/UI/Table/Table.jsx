@@ -5,7 +5,7 @@ import { TableBody, TableHeader } from ".";
 const Table = ({ data, columns, children }) => {
 	return (
 		<TableContainer component={Paper}>
-			<MUITable>
+			<MUITable size="small">
 				{children || (
 					<>
 						<TableHeader columns={columns} />
