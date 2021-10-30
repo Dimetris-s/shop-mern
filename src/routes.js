@@ -1,3 +1,4 @@
+import AddProductForm from "./components/common/AddProductForm";
 import Auth from "./pages/Auth";
 import Basket from "./pages/Basket";
 import Dashboard from "./pages/Dashboard";
@@ -5,6 +6,7 @@ import Home from "./pages/Home";
 import ProductPage from "./pages/ProductPage";
 import {
 	BASKET_ROUTE,
+	CREATE_PRODUCT_ROUTE,
 	DASHBOARD_ROUTE,
 	HOME_ROUTE,
 	LOGIN_ROUTE,
@@ -21,9 +23,14 @@ export const authRoutes = [
 
 export const adminRoutes = [
 	{
+		path: CREATE_PRODUCT_ROUTE,
+		Component: AddProductForm,
+	},
+	{
 		path: DASHBOARD_ROUTE,
 		Component: Dashboard,
 	},
+	
 ];
 
 export const publicRoutes = [

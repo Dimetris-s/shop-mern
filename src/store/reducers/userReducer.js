@@ -5,8 +5,8 @@ const initialState = {
 		{ id: "1", username: "admin", password: "admin", isAdmin: true },
 		{ id: "2", username: "dima", password: "123", isAdmin: false },
 	],
-	isAuth: false,
-	user: {},
+	isAuth: true,
+	user: { id: "1", username: "admin", password: "admin", isAdmin: true },
 };
 
 export const userReducer = (state = initialState, action) => {

@@ -7,6 +7,8 @@ import ProductsTable from "../components/common/Product/ProductsTable";
 import { fetchProducts, setSortOrder, setSortType } from "../store/actions";
 import _ from "lodash"
 import { AddShoppingCart, Category } from "@material-ui/icons";
+import { useHistory } from "react-router";
+import { DASHBOARD_ROUTE } from "../utils/consts";
 
 const useStyles = makeStyles(theme => ({
 	title: {
@@ -24,6 +26,7 @@ const useStyles = makeStyles(theme => ({
 const Dashboard = () => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
+	const history = useHistory()
 	const {products, sortBy} = useSelector(state => state.products);
 	useEffect(() => {
 		dispatch(fetchProducts());
@@ -40,7 +43,7 @@ const Dashboard = () => {
 			{products ? <ProductsTable products={sortedProducts} /> : <Loader />}
 			<div className={classes.buttons}>
 				<Button variant="contained" color="warning" endIcon={<Category/>}>Добавить категорию</Button>
-				<Button variant="contained" color="secondary" endIcon={<AddShoppingCart/>}>Добавить товар</Button>
+				<Button onClick={() => history.push(DASHBOARD_ROUTE + "/create")} variant="contained" color="secondary" endIcon={<AddShoppingCart/>}>Добавить товар</Button>
 			</div>
 		</Container>
 	);

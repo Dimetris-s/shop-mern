@@ -41,3 +41,12 @@ export const getProductById = async id => {
 export const deleteProduct = async id => {
 	instance.delete(`/products/${id}`)
 }
+
+export const createProduct = async data => {
+	const product = {
+		id: Math.random().toString(36).substr(2, 9),
+		rate: 0,
+		...data
+	}
+	instance.post(`/products/`, product)
+}
