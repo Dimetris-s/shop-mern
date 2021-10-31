@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/styles";
 import TextField from "../../UI/Form/TextField";
 import { Button } from "@material-ui/core";
+import { registerFormConfig } from "../../../utils/configs";
+import { validator } from "../../../utils/validator";
+import { createBasket, createUser } from "../../../utils/axios";
+import { useDispatch } from "react-redux";
+import { showAlert } from "../../../store/actions";
+import { useHistory } from "react-router";
+import { LOGIN_ROUTE } from "../../../utils/consts";
 
 const useStyles = makeStyles(theme => ({
-	
 	form: {
 		width: "400px",
 		display: "flex",
@@ -20,41 +26,81 @@ const useStyles = makeStyles(theme => ({
 
 const RegisterForm = () => {
 	const classes = useStyles();
-    const [data, setData] = useState({login: "", password: ""})
-    const handleCahnge = ({name, value}) => {
-        setData(prevState => ({
-            ...prevState,
-            [name]: value
-        }))
-    }
-    const submitHandler = event => {
-        event.preventDefault()
-        console.log(data);
-    }
+	const dispatch = useDispatch();
+	const history = useHistory();
+	const [data, setData] = useState({ login: "", password: "", passwordRepeat: "" });
+	const [errors, setErrors] = useState({});
+	const [touched, setTouched] = useState(false)
+	const validate = () => {
+		const errors = validator(data, registerFormConfig);
+		if (data.passwordRepeat !== data.password) errors.passwordRepeat = registerFormConfig.passwordRepeat.message;
+		setErrors(errors);
+		return Object.keys(errors).length === 0;
+	};
+	useEffect(() => {
+		if(touched) {
+			validate();
+		}
+	}, [data]);
+	const handleCahnge = ({ name, value }) => {
+		setData(prevState => ({
+			...prevState,
+			[name]: value,
+		}));
+	};
+	const submitHandler = event => {
+		event.preventDefault();
+		setTouched(true)
+		const isValid = validate();
+		if (isValid) {
+			const newUser = {
+				username: data.login,
+				password: data.password,
+			};
+
+			createUser(newUser)
+				.then(user => createBasket(user.id))
+				.then(() => {
+					dispatch(showAlert({ type: "success", text: "Пользователь успешно создан!" }));
+					history.push(LOGIN_ROUTE);
+				})
+				.catch(() => {
+					dispatch(showAlert({ type: "error", text: "Такой пользователь уже существует" }));
+					setData({ login: "", password: "", passwordRepeat: "" });
+				});
+		}
+	};
 	return (
 		<form onSubmit={submitHandler} className={classes.form}>
 			<TextField
 				placeholder={"Придумайте логин"}
-				label="Login"
-                name="login"
-                value={data.login}
-                onChange={handleCahnge}
+				label="Имя пользователя"
+				name="login"
+				value={data.login}
+				onChange={handleCahnge}
+				error={errors.login}
 			/>
-            <TextField
-				placeholder="Придумайте ваш пароль..."
-				label="Password"
-                name="password"
-                value={data.password}
-                onChange={handleCahnge}
-                type="password"
+			<TextField
+				label="Пароль"
+				name="password"
+				value={data.password}
+				onChange={handleCahnge}
+				type="password"
+				error={errors.password}
+				registerPassword
+			/>
+			<TextField
+				label="Повторите пароль"
+				name="passwordRepeat"
+				value={data.passwordRepeat}
+				onChange={handleCahnge}
+				type="password"
+				error={errors.passwordRepeat}
+				registerPassword
+
 			/>
 			<div className={classes.actions}>
-
-				<Button
-					variant={"contained"}
-					color={"success"}
-					type={"submit"}
-				>
+				<Button variant={"contained"} color={"success"} type={"submit"}>
 					Зарегестрироваться
 				</Button>
 			</div>

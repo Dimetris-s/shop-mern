@@ -10,7 +10,7 @@ import {
 import React, { useState } from "react";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 
-const TextField = ({ name, label, value, onChange, type, placeholder, error, outlined, multiline, rows, size }) => {
+const TextField = ({ name, label, value, onChange, type, placeholder, error, outlined, multiline, rows, size, registerPassword }) => {
 	const [showPassword, setShowPassword] = useState(false);
 	const changeHandler = ({ target }) => {
 		onChange({ value: target.value, name: target.name });
@@ -19,7 +19,7 @@ const TextField = ({ name, label, value, onChange, type, placeholder, error, out
 		setShowPassword(prevState => !prevState);
 	};
 	const getAdornments = () => {
-		return type === "password" ? (
+		return (type === "password" && !registerPassword) ? (
 			<InputAdornment position="end">
 				<IconButton onClick={toggleShowPassword}>
 					{showPassword ? <VisibilityOff /> : <Visibility />}
@@ -44,7 +44,7 @@ const TextField = ({ name, label, value, onChange, type, placeholder, error, out
 	return (
 		<FormControl
 			label={label}
-			error={error}
+			error={!!error}
 			sx={{ mb: 3, width: "100%", ":last-of-type": { mb: 0 } }}
 			color="primary"
 			size={size}

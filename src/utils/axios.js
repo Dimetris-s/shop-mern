@@ -58,10 +58,33 @@ export const createProduct = async data => {
 export const createCategory = async name => {
 	const category = {
 		id: Math.random().toString(36).substr(2, 9),
-		name
-	}
+		name,
+	};
 	await instance.post(`/categories/`, category);
-	return category
+	return category;
+};
+
+export const createBasket = async userId => {
+	const basket = {
+		id: Math.random().toString(36).substr(2, 9),
+		user_id: userId,
+	};
+	await instance.post(`/baskets/`, basket);
+	return basket
+};
+
+export const createUser = async user => {
+	const users = await instance.get('/users')
+	if(users.data.some(dbUser => dbUser.username === user.username)) {
+		throw new Error("Такой пользователь уже существует")
+	}
+	const newUser = {
+		id: Math.random().toString(36).substr(2, 9),
+		isAdmin: false,
+		...user
+	}
+	await instance.post(`/users/`, newUser)
+	return newUser
 }
 export const getCategoryById = async id => {
 	const { data } = await instance.get(`/categories/${id}`);
@@ -69,8 +92,8 @@ export const getCategoryById = async id => {
 };
 
 export const editProduct = async (id, data) => {
-	const product = await instance.get(`/products/${id}`)
-	await instance.put(`/products/${id}`, {...product.data, ...data});
+	const product = await instance.get(`/products/${id}`);
+	await instance.put(`/products/${id}`, { ...product.data, ...data });
 	const products = await instance.get(`/products`);
 	return products.data;
 };

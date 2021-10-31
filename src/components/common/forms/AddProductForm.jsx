@@ -46,7 +46,7 @@ const AddProductForm = () => {
 		const isValid = validate();
 
 		if (isValid) {
-			createProduct(data).then(product => dispatch(setProducts([...products, product])));
+			createProduct({...data, price: +data.price}).then(product => dispatch(setProducts([...products, product])));
 			dispatch(closeModal("addProductModal"));
 			dispatch(showAlert({ type: "success", text: "Товар успешно добавлен!" }));
 		}

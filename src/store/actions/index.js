@@ -2,7 +2,6 @@ import axios from "../../utils/axios";
 import {
 	CLEAR_SEARCH,
 	CLOSE_MODAL,
-	CREATE_USER,
 	HIDE_ALERT,
 	OPEN_MODAL,
 	REMOVE_USER,
@@ -70,10 +69,7 @@ export const setSearchValue = value => ({
 export const clearSearch = () => ({
 	type: CLEAR_SEARCH,
 });
-export const createUser = user => ({
-	type: CREATE_USER,
-	payload: user,
-});
+
 
 export const showAlert = alert => ({
 	type: SHOW_ALERT,

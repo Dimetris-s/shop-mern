@@ -10,15 +10,15 @@ import { decrementBasketItem, deleteBasketItem, incrementBasketItem } from "../u
 
 const Basket = () => {
 	const dispatch = useDispatch();
-	const { items, badgeCount } = useSelector(state => state.basket);
+	const { items, badgeCount, basket } = useSelector(state => state.basket);
 	const products = useSelector(state => state.products.products);
-	const { id: userId } = useSelector(state => state.user.user);
 	const searchValue = useSelector(state => state.products.searchValue);
 	const loading = useSelector(state => state.loading.basket);
 
 	useEffect(() => {
 		dispatch(fetchProducts());
-		dispatch(fetchBasketItems(userId));
+
+		dispatch(fetchBasketItems(basket.id));
 		// eslint-disable-next-line
 	}, []);
 

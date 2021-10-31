@@ -48,7 +48,7 @@ const EditProductForm = ({product}) => {
 		const isValid = validate();
 
 		if (isValid) {
-			editProduct(product.id, data).then(products => dispatch(setProducts(products)))
+			editProduct(product.id, {...data, price: +data.price}).then(products => dispatch(setProducts(products)))
 			dispatch(closeModal("editModal"));
 			dispatch(showAlert({type: "info", text: "Товар изменен!"}))
 		}

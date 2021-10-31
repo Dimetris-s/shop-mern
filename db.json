@@ -62,6 +62,24 @@
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa nam atque, nesciunt aut quos accusantium porro a quis ad obcaecati corrupti voluptatibus magni vel ex aliquam ducimus suscipit sunt laborum perferendis! Aliquid ea iste repellendus? Nesciunt, atque vel praesentium quis possimus reprehenderit perferendis tenetur sapiente ullam hic aliquid aspernatur doloribus nostrum doloremque voluptatem provident sint architecto accusantium nemo pariatur, sed ipsam quam ab? Maxime, nam! Porro sit eaque hic. Corporis aspernatur officiis, beatae architecto quo maiores veritatis facere quisquam repudiandae neque. Maiores veritatis, maxime error consequuntur quibusdam molestias quam alias labore aperiam voluptas, delectus iusto reprehenderit incidunt laboriosam deleniti mollitia!",
       "rate": 4.2,
       "img": "https://cdn.comfy.ua/media/catalog/product/cache/4/image/1440x1080/62defc7f46f3fbfc8afcd112227d1181/a/p/apple_iphone_13_64gb_midnight.jpg"
+    },
+    {
+      "id": "ew00p51ji",
+      "rate": 0,
+      "name": "Утюг",
+      "price": 2500,
+      "category_id": "2",
+      "img": "https://static4.depositphotos.com/1001719/287/i/600/depositphotos_2873475-stock-photo-flat-iron.jpg",
+      "description": "Супер утюг охереть просто можно!!!!)))))"
+    },
+    {
+      "id": "ketbb4tyy",
+      "rate": 0,
+      "name": "Набор бокалов",
+      "price": 550,
+      "category_id": "xtd34sc3t",
+      "img": "https://content.rozetka.com.ua/goods/images/big/64068620.jpg",
+      "description": "Неебаца крутые бокалы, надеюсь с картинкой угадал"
     }
   ],
   "categories": [
@@ -80,6 +98,10 @@
     {
       "id": "4",
       "name": "Мебель"
+    },
+    {
+      "id": "xtd34sc3t",
+      "name": "Посуда"
     }
   ],
   "users": [
@@ -90,10 +112,10 @@
       "isAdmin": true
     },
     {
-      "id": "2",
-      "username": "dima",
-      "password": "123",
-      "isAdmin": false
+      "id": "15hle9qtw",
+      "isAdmin": false,
+      "username": "dimetris-s",
+      "password": "qweqweqwe123Q"
     }
   ],
   "baskets": [
@@ -102,9 +124,52 @@
       "user_id": "1"
     },
     {
-      "id": "2",
-      "user_id": "2"
+      "id": "lgwoepo83",
+      "user_id": "15hle9qtw"
     }
   ],
-  "basket_items": []
+  "basket_items": [
+    {
+      "id": "5",
+      "basket_id": "lgwoepo83",
+      "product_id": "8",
+      "count": 2
+    },
+    {
+      "id": "53",
+      "basket_id": "lgwoepo83",
+      "product_id": "6",
+      "count": 3
+    },
+    {
+      "id": "64",
+      "basket_id": "1",
+      "product_id": "5",
+      "count": 1
+    },
+    {
+      "id": "2",
+      "basket_id": "1",
+      "product_id": "1",
+      "count": 1
+    },
+    {
+      "id": "18",
+      "basket_id": "1",
+      "product_id": "ew00p51ji",
+      "count": 1
+    },
+    {
+      "id": "9",
+      "basket_id": "lgwoepo83",
+      "product_id": "ketbb4tyy",
+      "count": 1
+    },
+    {
+      "id": "19",
+      "basket_id": "lgwoepo83",
+      "product_id": "ew00p51ji",
+      "count": 1
+    }
+  ]
 }

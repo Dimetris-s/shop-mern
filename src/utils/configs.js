@@ -18,3 +18,29 @@ export const productFormConfig = {
 		isRequired: { message: "Поле не может быть пустым" },
 	},
 };
+
+export const loginFormConfig = {
+	login: {
+		isRequired: {message: "Поле не может быть пустым"}
+	},
+	password: {
+		isRequired: {message: "Пароль не может быть пустым"}
+	}
+}
+
+export const registerFormConfig = {
+	login: {
+		isRequired: {message: "Поле не может быть пустым"},
+		minLength: {message: "Логин должен содержать как минимум 3 символа", value: 3},
+		maxLength: { message: "Логин может содержать максимум 20 символов", value: 20 },
+		isLogin: {message: "Логин может содержать только буквы, цифры и знаки '_', '-'"}
+	},
+	password: {
+		isRequired: {message: "Пароль не может быть пустым"},
+		minLength: {message: "Пароль должен содержать как минимум 6 символов", value: 6},
+		noSpace: {message: "Пароль не должен содержать пробелов"},
+		isNumber: {message: "Пароль должен содержать хотя бы одну цифру"},
+		isCapitalize: {message: "Пароль должен содержать хотя бы одну заглавную букву"}
+	},
+	passwordRepeat: {message: "Пароли не совпадают"}
+}
