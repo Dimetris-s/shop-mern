@@ -28,6 +28,7 @@ const TextField = ({ name, label, value, onChange, type, placeholder, error, out
 		) : null;
 	};
 
+
 	const inputProps = {
 		id: name,
 		name,

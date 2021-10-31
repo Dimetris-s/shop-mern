@@ -17,6 +17,9 @@ const TableHeader = ({ columns }) => {
 	return (
 		<TableHead>
 			<TableRow>
+				<TableCell align="left">
+					№
+				</TableCell>
 				{Object.keys(columns).map(column => (
 					<TableCell key={column} align="left">
 						{columns[column].path ? (

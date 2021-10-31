@@ -19,9 +19,9 @@ const GroupList = ({ items, valueProp, contentProp, selectedItem, onItemChange }
 				<Button
 					component="li"
 					className={classes.button}
-					variant={`${selectedItem === items[key] ? "contained" : "outlined"}`}
+					variant={`${selectedItem === items[key][valueProp] ? "contained" : "outlined"}`}
 					key={items[key][valueProp]}
-					onClick={() => onItemChange(items[key])}
+					onClick={() => onItemChange(items[key][valueProp])}
 				>
 					{items[key][contentProp]}
 				</Button>

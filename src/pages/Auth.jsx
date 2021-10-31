@@ -3,8 +3,8 @@ import { Container, Typography} from "@material-ui/core";
 import useLoginLocation from "../hooks/useLoginLocation";
 import { makeStyles } from "@material-ui/styles";
 
-import LoginForm from "../components/common/LoginForm";
-import RegisterForm from "../components/common/RegisterForm";
+import LoginForm from "../components/common/forms/LoginForm";
+import RegisterForm from "../components/common/forms/RegisterForm";
 
 const useStyles = makeStyles(theme => ({
 	container: {

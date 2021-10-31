@@ -4,6 +4,7 @@ import { loadingReducer } from "./loadingReducer";
 import { productReducer } from "./productReducer";
 import { userReducer } from "./userReducer";
 import { alertReducer } from "./alertReducer";
+import { modalsReducer } from "./modalsReducer";
 
 export const rootReducer = combineReducers({
 	user: userReducer,
@@ -11,4 +12,5 @@ export const rootReducer = combineReducers({
 	loading: loadingReducer,
 	basket: basketReducer,
 	alert: alertReducer,
+	modal: modalsReducer
 });

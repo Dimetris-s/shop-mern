@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/styles";
-import TextField from "../UI/Form/TextField";
+import TextField from "../../UI/Form/TextField";
 import { Button } from "@material-ui/core";
-import { HOME_ROUTE, REGISTRATION_ROUTE } from "../../utils/consts";
+import { HOME_ROUTE, REGISTRATION_ROUTE } from "../../../utils/consts";
 import { useHistory } from "react-router";
 import { useDispatch } from "react-redux";
-import { setUser } from "../../store/actions";
+import { setUser } from "../../../store/actions";
 
 const useStyles = makeStyles(theme => ({
 	
@@ -27,7 +27,7 @@ const LoginForm = () => {
     const history = useHistory()
     const dispatch = useDispatch()
     const [data, setData] = useState({login: "", password: ""})
-    const [errors, setErrors] = useState({})
+    const [errors] = useState({})
     const handleCahnge = ({name, value}) => {
         setData(prevState => ({
             ...prevState,

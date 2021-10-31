@@ -2,9 +2,9 @@ import { IconButton, Tooltip } from "@material-ui/core";
 import { Delete, Edit } from "@material-ui/icons";
 import React from "react";
 
-const TableActions = ({ id, onDelete }) => {
-    const onEdit = id => {
-    }
+
+const TableActions = ({ id, onDelete, onEdit }) => {
+   
    
 	return (
 		<>

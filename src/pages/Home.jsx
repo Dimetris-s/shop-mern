@@ -75,7 +75,7 @@ const Home = () => {
 
 	const sortedProducts = orderBy(products, [sortBy.type], [sortBy.order]);
 	const filteredProducts = selectedCategory
-		? sortedProducts.filter(product => product.category === selectedCategory.name)
+		? sortedProducts.filter(product => product.category_id === selectedCategory)
 		: sortedProducts;
 	const searchedProducts = searchValue
 		? sortedProducts.filter(product => product.name.toLowerCase().match(searchValue.toLowerCase()))

@@ -34,19 +34,31 @@ export const addBasketItem = async item => {
 };
 
 export const getProductById = async id => {
-	const {data} = await instance.get(`/products/${id}`)
-	return data
-}
+	const { data } = await instance.get(`/products/${id}`);
+	return data;
+};
 
 export const deleteProduct = async id => {
-	instance.delete(`/products/${id}`)
-}
+	instance.delete(`/products/${id}`);
+};
 
 export const createProduct = async data => {
 	const product = {
 		id: Math.random().toString(36).substr(2, 9),
 		rate: 0,
-		...data
-	}
-	instance.post(`/products/`, product)
-}
+		...data,
+	};
+	await instance.post(`/products/`, product);
+	return product;
+};
+export const getCategoryById = async id => {
+	const { data } = await instance.get(`/categories/${id}`);
+	return data;
+};
+
+export const editProduct = async (id, data) => {
+	const product = await instance.get(`/products/${id}`)
+	await instance.put(`/products/${id}`, {...product.data, ...data});
+	const products = await instance.get(`/products`);
+	return products.data;
+};

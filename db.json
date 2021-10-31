@@ -4,7 +4,7 @@
       "id": "1",
       "name": "Стиральная машина",
       "price": 12500,
-      "category": "Бытовая техника",
+      "category_id": "2",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa nam atque, nesciunt aut quos accusantium porro a quis ad obcaecati corrupti voluptatibus magni vel ex aliquam ducimus suscipit sunt laborum perferendis! Aliquid ea iste repellendus? Nesciunt, atque vel praesentium quis possimus reprehenderit perferendis tenetur sapiente ullam hic aliquid aspernatur doloribus nostrum doloremque voluptatem provident sint architecto accusantium nemo pariatur, sed ipsam quam ab? Maxime, nam! Porro sit eaque hic. Corporis aspernatur officiis, beatae architecto quo maiores veritatis facere quisquam repudiandae neque. Maiores veritatis, maxime error consequuntur quibusdam molestias quam alias labore aperiam voluptas, delectus iusto reprehenderit incidunt laboriosam deleniti mollitia!",
       "rate": 4.8,
       "img": "https://st.depositphotos.com/1001877/5138/i/950/depositphotos_51380101-stock-photo-washing-machine.jpg"
@@ -13,7 +13,7 @@
       "id": "2",
       "name": "Холодильник",
       "price": 25000,
-      "category": "Бытовая техника",
+      "category_id": "2",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa nam atque, nesciunt aut quos accusantium porro a quis ad obcaecati corrupti voluptatibus magni vel ex aliquam ducimus suscipit sunt laborum perferendis! Aliquid ea iste repellendus? Nesciunt, atque vel praesentium quis possimus reprehenderit perferendis tenetur sapiente ullam hic aliquid aspernatur doloribus nostrum doloremque voluptatem provident sint architecto accusantium nemo pariatur, sed ipsam quam ab? Maxime, nam! Porro sit eaque hic. Corporis aspernatur officiis, beatae architecto quo maiores veritatis facere quisquam repudiandae neque. Maiores veritatis, maxime error consequuntur quibusdam molestias quam alias labore aperiam voluptas, delectus iusto reprehenderit incidunt laboriosam deleniti mollitia!",
       "rate": 4.5,
       "img": "https://media.istockphoto.com/photos/modern-domestic-refrigerator-with-control-display-picture-id1086056164?b=1&k=20&m=1086056164&s=170667a&w=0&h=K5DSJsWDBnNl5UhQ99Sv3RRM87LbN5g3FL13ItIHbXQ="
@@ -22,7 +22,7 @@
       "id": "3",
       "name": "Мышь",
       "price": 1000,
-      "category": "Перифирия",
+      "category_id": "1",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa nam atque, nesciunt aut quos accusantium porro a quis ad obcaecati corrupti voluptatibus magni vel ex aliquam ducimus suscipit sunt laborum perferendis! Aliquid ea iste repellendus? Nesciunt, atque vel praesentium quis possimus reprehenderit perferendis tenetur sapiente ullam hic aliquid aspernatur doloribus nostrum doloremque voluptatem provident sint architecto accusantium nemo pariatur, sed ipsam quam ab? Maxime, nam! Porro sit eaque hic. Corporis aspernatur officiis, beatae architecto quo maiores veritatis facere quisquam repudiandae neque. Maiores veritatis, maxime error consequuntur quibusdam molestias quam alias labore aperiam voluptas, delectus iusto reprehenderit incidunt laboriosam deleniti mollitia!",
       "rate": 4.2,
       "img": "https://files.foxtrot.com.ua/PhotoNew/img_0_709_3748_0.webp"
@@ -31,7 +31,7 @@
       "id": "5",
       "name": "Клавиатура",
       "price": 4000,
-      "category": "Перифирия",
+      "category_id": "1",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa nam atque, nesciunt aut quos accusantium porro a quis ad obcaecati corrupti voluptatibus magni vel ex aliquam ducimus suscipit sunt laborum perferendis! Aliquid ea iste repellendus? Nesciunt, atque vel praesentium quis possimus reprehenderit perferendis tenetur sapiente ullam hic aliquid aspernatur doloribus nostrum doloremque voluptatem provident sint architecto accusantium nemo pariatur, sed ipsam quam ab? Maxime, nam! Porro sit eaque hic. Corporis aspernatur officiis, beatae architecto quo maiores veritatis facere quisquam repudiandae neque. Maiores veritatis, maxime error consequuntur quibusdam molestias quam alias labore aperiam voluptas, delectus iusto reprehenderit incidunt laboriosam deleniti mollitia!",
       "rate": 4,
       "img": "https://images.unsplash.com/photo-1541140532154-b024d705b90a?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8a2V5Ym9hcmR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
@@ -40,25 +40,25 @@
       "id": "6",
       "name": "Диван",
       "price": 9000,
-      "category": "Мебель",
+      "category_id": "4",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa nam atque, nesciunt aut quos accusantium porro a quis ad obcaecati corrupti voluptatibus magni vel ex aliquam ducimus suscipit sunt laborum perferendis! Aliquid ea iste repellendus? Nesciunt, atque vel praesentium quis possimus reprehenderit perferendis tenetur sapiente ullam hic aliquid aspernatur doloribus nostrum doloremque voluptatem provident sint architecto accusantium nemo pariatur, sed ipsam quam ab? Maxime, nam! Porro sit eaque hic. Corporis aspernatur officiis, beatae architecto quo maiores veritatis facere quisquam repudiandae neque. Maiores veritatis, maxime error consequuntur quibusdam molestias quam alias labore aperiam voluptas, delectus iusto reprehenderit incidunt laboriosam deleniti mollitia!",
       "rate": 4.4,
       "img": "https://media.istockphoto.com/photos/three-seats-cozy-color-fabric-sofa-isolated-on-white-picture-id1226422248?b=1&k=20&m=1226422248&s=170667a&w=0&h=fvgbN8mVVTZhn_B4hY26LGDyoP3brk8Ik5i_5EdwX6I="
     },
     {
-      "id": "7",
       "name": "Шкаф",
-      "price": 16000,
-      "category": "Мебель",
+      "price": "14000",
+      "category_id": "4",
+      "rate": 4.4,
+      "img": "https://images.unsplash.com/photo-1558997519-83ea9252edf8?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y3VwYm9hcmR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa nam atque, nesciunt aut quos accusantium porro a quis ad obcaecati corrupti voluptatibus magni vel ex aliquam ducimus suscipit sunt laborum perferendis! Aliquid ea iste repellendus? Nesciunt, atque vel praesentium quis possimus reprehenderit perferendis tenetur sapiente ullam hic aliquid aspernatur doloribus nostrum doloremque voluptatem provident sint architecto accusantium nemo pariatur, sed ipsam quam ab? Maxime, nam! Porro sit eaque hic. Corporis aspernatur officiis, beatae architecto quo maiores veritatis facere quisquam repudiandae neque. Maiores veritatis, maxime error consequuntur quibusdam molestias quam alias labore aperiam voluptas, delectus iusto reprehenderit incidunt laboriosam deleniti mollitia!",
-      "rate": 3.9,
-      "img": "https://images.unsplash.com/photo-1558997519-83ea9252edf8?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y3VwYm9hcmR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+      "id": "7"
     },
     {
       "id": "8",
       "name": "IPhone 13",
       "price": 40000,
-      "category": "Смартфоны",
+      "category_id": "3",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa nam atque, nesciunt aut quos accusantium porro a quis ad obcaecati corrupti voluptatibus magni vel ex aliquam ducimus suscipit sunt laborum perferendis! Aliquid ea iste repellendus? Nesciunt, atque vel praesentium quis possimus reprehenderit perferendis tenetur sapiente ullam hic aliquid aspernatur doloribus nostrum doloremque voluptatem provident sint architecto accusantium nemo pariatur, sed ipsam quam ab? Maxime, nam! Porro sit eaque hic. Corporis aspernatur officiis, beatae architecto quo maiores veritatis facere quisquam repudiandae neque. Maiores veritatis, maxime error consequuntur quibusdam molestias quam alias labore aperiam voluptas, delectus iusto reprehenderit incidunt laboriosam deleniti mollitia!",
       "rate": 4.2,
       "img": "https://cdn.comfy.ua/media/catalog/product/cache/4/image/1440x1080/62defc7f46f3fbfc8afcd112227d1181/a/p/apple_iphone_13_64gb_midnight.jpg"

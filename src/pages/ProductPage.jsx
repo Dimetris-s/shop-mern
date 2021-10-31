@@ -1,4 +1,4 @@
-import { Button, Chip, Container, Grid, Rating, Typography } from "@material-ui/core";
+import { Button, Container, Grid, Rating, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
@@ -9,6 +9,7 @@ import { Box } from "@material-ui/system";
 import { useDispatch, useSelector } from "react-redux";
 import { setBadgeCount, setBasketItems, showAlert } from "../store/actions";
 import useAuthState from "../hooks/useAuthState";
+import Category from "../components/UI/Category";
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -49,7 +50,6 @@ const ProductPage = () => {
 		getProductById(id).then(product => setProduct(product));
 		// eslint-disable-next-line
 	}, []);
-	console.log(product);
 
 	const addToCart = id => {
 		const basketItem = basketItems.find(item => item.product_id === id && basket.user_id === userId);
@@ -85,7 +85,7 @@ const ProductPage = () => {
 						<Typography variant="h4">{product.name}</Typography>
 						<Rating value={product.rate} readOnly precision={0.1} />
 						<Box sx={{ marginBottom: "2rem" }}>
-							<Chip color="info" label={product.category} variant="filled" size="small" />
+							<Category id={product.category_id}/>
 						</Box>
 						<Typography variant="h5" component="div" mb="3rem">
 							Цена:{" "}

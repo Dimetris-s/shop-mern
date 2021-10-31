@@ -4,11 +4,12 @@ import React, { useEffect } from "react";
 import Loader from "../components/UI/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import ProductsTable from "../components/common/Product/ProductsTable";
-import { fetchProducts, setSortOrder, setSortType } from "../store/actions";
+import { fetchProducts, openModal, setSortOrder, setSortType } from "../store/actions";
 import _ from "lodash"
 import { AddShoppingCart, Category } from "@material-ui/icons";
-import { useHistory } from "react-router";
-import { DASHBOARD_ROUTE } from "../utils/consts";
+import {  useParams } from "react-router";
+import EditProductModal from "../components/common/modals/EditProduct.modal";
+import AddProductModal from "../components/common/modals/AddProduct.modal";
 
 const useStyles = makeStyles(theme => ({
 	title: {
@@ -26,7 +27,7 @@ const useStyles = makeStyles(theme => ({
 const Dashboard = () => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
-	const history = useHistory()
+	const {productId} = useParams()
 	const {products, sortBy} = useSelector(state => state.products);
 	useEffect(() => {
 		dispatch(fetchProducts());
@@ -43,8 +44,11 @@ const Dashboard = () => {
 			{products ? <ProductsTable products={sortedProducts} /> : <Loader />}
 			<div className={classes.buttons}>
 				<Button variant="contained" color="warning" endIcon={<Category/>}>Добавить категорию</Button>
-				<Button onClick={() => history.push(DASHBOARD_ROUTE + "/create")} variant="contained" color="secondary" endIcon={<AddShoppingCart/>}>Добавить товар</Button>
+				
+				<Button onClick={() => dispatch(openModal("addProductModal"))} variant="contained" color="secondary" endIcon={<AddShoppingCart/>}>Добавить товар</Button>
 			</div>
+			{productId && <EditProductModal id={productId}/>}
+			<AddProductModal/>
 		</Container>
 	);
 };

@@ -16,8 +16,9 @@ const TableBody = ({ columns, data }) => {
 
     return (
         <MUITableBody>
-            {data.map(item => (
+            {data.map((item, index) => (
                 <TableRow key={item.id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                    <TableCell align="left">{index + 1}</TableCell>
                     {Object.keys(columns).map(column => (
                         <TableCell key={column} align="left">{renderContent(item, column)}</TableCell>
                     ))}

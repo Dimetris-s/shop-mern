@@ -1,8 +1,10 @@
 import axios from "../../utils/axios";
 import {
 	CLEAR_SEARCH,
+	CLOSE_MODAL,
 	CREATE_USER,
 	HIDE_ALERT,
+	OPEN_MODAL,
 	REMOVE_USER,
 	RESET_CATEGORY,
 	SELECT_CATEGORY,
@@ -131,3 +133,13 @@ export const fetchCategories = () => {
 		dispatch(stopLoading("categories"));
 	};
 };
+
+
+export const openModal = modalName => ({
+	type: OPEN_MODAL,
+	payload: modalName
+})
+export const closeModal = modalName => ({
+	type: CLOSE_MODAL,
+	payload: modalName
+})
