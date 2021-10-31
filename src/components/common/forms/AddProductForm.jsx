@@ -23,9 +23,11 @@ const AddProductForm = () => {
 	const { categories, products } = useSelector(state => state.products);
 	useEffect(() => {
 		dispatch(fetchCategories());
+		// eslint-disable-next-line
 	}, []);
 	useEffect(() => {
 		validate();
+		// eslint-disable-next-line
 	}, [data]);
 	const validate = () => {
 		const errors = validator(data, productFormConfig);

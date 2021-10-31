@@ -2,7 +2,8 @@ import { CLOSE_MODAL, OPEN_MODAL } from "../actions/types";
 
 const initialState = {
 	editModal: false,
-	addProductModal: false
+	addProductModal: false,
+	categoryModal: false
 };
 
 export function modalsReducer(state = initialState, action) {

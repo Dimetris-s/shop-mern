@@ -10,7 +10,7 @@ import {
 import React, { useState } from "react";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 
-const TextField = ({ name, label, value, onChange, type, placeholder, error, outlined, multiline, rows }) => {
+const TextField = ({ name, label, value, onChange, type, placeholder, error, outlined, multiline, rows, size }) => {
 	const [showPassword, setShowPassword] = useState(false);
 	const changeHandler = ({ target }) => {
 		onChange({ value: target.value, name: target.name });
@@ -28,7 +28,6 @@ const TextField = ({ name, label, value, onChange, type, placeholder, error, out
 		) : null;
 	};
 
-
 	const inputProps = {
 		id: name,
 		name,
@@ -39,11 +38,17 @@ const TextField = ({ name, label, value, onChange, type, placeholder, error, out
 		endAdornment: getAdornments(),
 		multiline,
 		rows,
-        label
+		label,
 	};
 
 	return (
-		<FormControl label={label} error={error} sx={{ mb: 3, width: "100%" }} color="primary">
+		<FormControl
+			label={label}
+			error={error}
+			sx={{ mb: 3, width: "100%", ":last-of-type": { mb: 0 } }}
+			color="primary"
+			size={size}
+		>
 			<InputLabel htmlFor={name}>{label}</InputLabel>
 			{outlined ? <OutlinedInput {...inputProps} /> : <Input {...inputProps} />}
 
@@ -54,6 +59,7 @@ const TextField = ({ name, label, value, onChange, type, placeholder, error, out
 
 TextField.defaultProps = {
 	type: "text",
+	size: "medium"
 };
 
 export default TextField;

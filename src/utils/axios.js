@@ -41,6 +41,9 @@ export const getProductById = async id => {
 export const deleteProduct = async id => {
 	instance.delete(`/products/${id}`);
 };
+export const deleteCategory = async id => {
+	instance.delete(`/categories/${id}`);
+};
 
 export const createProduct = async data => {
 	const product = {
@@ -51,6 +54,15 @@ export const createProduct = async data => {
 	await instance.post(`/products/`, product);
 	return product;
 };
+
+export const createCategory = async name => {
+	const category = {
+		id: Math.random().toString(36).substr(2, 9),
+		name
+	}
+	await instance.post(`/categories/`, category);
+	return category
+}
 export const getCategoryById = async id => {
 	const { data } = await instance.get(`/categories/${id}`);
 	return data;

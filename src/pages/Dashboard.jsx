@@ -10,6 +10,7 @@ import { AddShoppingCart, Category } from "@material-ui/icons";
 import {  useParams } from "react-router";
 import EditProductModal from "../components/common/modals/EditProduct.modal";
 import AddProductModal from "../components/common/modals/AddProduct.modal";
+import CategoryModal from "../components/common/modals/Category.modal";
 
 const useStyles = makeStyles(theme => ({
 	title: {
@@ -35,6 +36,13 @@ const Dashboard = () => {
 		dispatch(setSortOrder("asc"))
 	}, [dispatch]);
 
+	const onAddProduct = () => {
+		dispatch(openModal("addProductModal"))
+	}
+	const onEditCategories = () => {
+		dispatch(openModal("categoryModal"))
+	}
+
 	const sortedProducts = _.orderBy(products, sortBy.type, sortBy.order)
 	return (
 		<Container maxWidth="xl">
@@ -43,12 +51,12 @@ const Dashboard = () => {
 			</Typography>
 			{products ? <ProductsTable products={sortedProducts} /> : <Loader />}
 			<div className={classes.buttons}>
-				<Button variant="contained" color="warning" endIcon={<Category/>}>Добавить категорию</Button>
-				
-				<Button onClick={() => dispatch(openModal("addProductModal"))} variant="contained" color="secondary" endIcon={<AddShoppingCart/>}>Добавить товар</Button>
+				<Button onClick={onEditCategories} variant="contained" color="secondary" endIcon={<Category/>}>Категории</Button>
+				<Button onClick={onAddProduct} variant="contained" color="primary" endIcon={<AddShoppingCart/>}>Добавить товар</Button>
 			</div>
 			{productId && <EditProductModal id={productId}/>}
 			<AddProductModal/>
+			<CategoryModal/>
 		</Container>
 	);
 };

@@ -17,7 +17,7 @@ export function validator(data, config) {
                 statusValidate = +data <= 0
                 break
             case "isLink":
-                const linkRegExp = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g
+                const linkRegExp = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/g
                 statusValidate = !linkRegExp.test(data)
                 break
             case "maxLength":
