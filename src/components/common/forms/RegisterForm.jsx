@@ -30,7 +30,7 @@ const RegisterForm = () => {
 	const history = useHistory();
 	const [data, setData] = useState({ login: "", password: "", passwordRepeat: "" });
 	const [errors, setErrors] = useState({});
-	const [touched, setTouched] = useState(false)
+	const [touched, setTouched] = useState(false);
 	const validate = () => {
 		const errors = validator(data, registerFormConfig);
 		if (data.passwordRepeat !== data.password) errors.passwordRepeat = registerFormConfig.passwordRepeat.message;
@@ -38,7 +38,7 @@ const RegisterForm = () => {
 		return Object.keys(errors).length === 0;
 	};
 	useEffect(() => {
-		if(touched) {
+		if (touched) {
 			validate();
 		}
 	}, [data]);
@@ -48,26 +48,24 @@ const RegisterForm = () => {
 			[name]: value,
 		}));
 	};
-	const submitHandler = event => {
+	const submitHandler = async event => {
 		event.preventDefault();
-		setTouched(true)
+		setTouched(true);
 		const isValid = validate();
-		if (isValid) {
-			const newUser = {
-				username: data.login,
-				password: data.password,
-			};
-
-			createUser(newUser)
-				.then(user => createBasket(user.id))
-				.then(() => {
-					dispatch(showAlert({ type: "success", text: "Пользователь успешно создан!" }));
-					history.push(LOGIN_ROUTE);
-				})
-				.catch(() => {
-					dispatch(showAlert({ type: "error", text: "Такой пользователь уже существует" }));
-					setData({ login: "", password: "", passwordRepeat: "" });
-				});
+		if (!isValid) return;
+		const newUser = {
+			username: data.login,
+			password: data.password,
+		};
+		try {
+			const user = await createUser(newUser);
+			await createBasket(user.id);
+			dispatch(showAlert({ type: "success", text: "Пользователь успешно создан!" }));
+			history.push(LOGIN_ROUTE);
+		} catch (error) {
+			console.log("ERROR", error);
+			dispatch(showAlert({ type: "error", text: error.message }));
+			setData({ login: "", password: "", passwordRepeat: "" });
 		}
 	};
 	return (
@@ -97,7 +95,6 @@ const RegisterForm = () => {
 				type="password"
 				error={errors.passwordRepeat}
 				registerPassword
-
 			/>
 			<div className={classes.actions}>
 				<Button variant={"contained"} color={"success"} type={"submit"}>
